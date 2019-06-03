@@ -4,11 +4,11 @@
     ViewData["Title"] = "Locations";
 }
 
-<script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
-<h1>Index</h1>
+<h1>Locations</h1>
 
-<p>
+<p class="hyperlinks">
     <a asp-action="Create">Create New</a>
 </p>
 
@@ -49,8 +49,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Address)
                 </td>
-                <td
-                    >
+                <td>
                     @Html.DisplayFor(modelItem => item.AddressNumber)
                 </td>
                 <td>
@@ -60,9 +59,9 @@
                     @Html.DisplayFor(modelItem => item.City)
                 </td>
                 <td>
-                    <a asp-action="Details" asp-route-id="@item.LocationId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.LocationId">Delete</a> |
-                    <a asp-action="AddSensor" asp-controller="Locations"
+                    <a asp-action="Details" asp-route-id="@item.LocationId" class="hyperlinks">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.LocationId" class="hyperlinks">Delete</a> |
+                    <a asp-action="AddSensor" asp-controller="Sensor" class="hyperlinks"
                        asp-route-id="@item.LocationId">Add Sensor</a>
                 </td>
             </tr>
@@ -70,45 +69,51 @@
     </tbody>
 </table>
 
-<div id="Vue" class="col-md-4">
-    <br />
-    <br />
-    <input id="searchString" type="search" placeholder="Type in a location name" />
-    <input type="submit" value="Search" class="btn btn-primary" v-on:click="getData" />
-    <br />
-    <br />
+<div id="Vue">
+
+    <div class="box">
+        <div class="container-1">
+            <span class="icon"><i class="fa fa-search"></i></span>
+            <input id="searchString" type="search" placeholder="Search..." />
+            <input type="submit" value="Search" class="btn searchButton" v-on:click="getData" />
+        </div>
+    </div>
+
     <h3>Searched locations</h3>
 
     <table class="table table-light table-hover">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.LocationId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AddressNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PostalCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.City)
-            </th>
-        </tr>
-
-        <tr v-for="location in locations">
-            <td>{{location.locationId}}</td>
-            <td>{{location.name}}</td>
-            <td>{{location.address}}</td>
-            <td>{{location.addressNumber}}</td>
-            <td>{{location.postalcode}}</td>
-            <td>{{location.city}}</td>
-        </tr>
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.LocationId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AddressNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PostalCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.City)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="location in locations">
+                <td>{{location.locationId}}</td>
+                <td>{{location.name}}</td>
+                <td>{{location.address}}</td>
+                <td>{{location.addressNumber}}</td>
+                <td>{{location.postalCode}}</td>
+                <td>{{location.city}}</td>
+            </tr>
+        </tbody>
     </table>
 </div>
 

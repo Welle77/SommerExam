@@ -22,22 +22,10 @@ namespace SommerExam.Controllers
             _context = context;
         }
 
-        // GET: Locations
-        //public async Task<IActionResult> Index()
-        //{
-        //    return View(await _context.Locations.ToListAsync());
-        //}
-
-        //https://www.c-sharpcorner.com/UploadFile/219d4d/implement-search-paging-and-sort-in-mvc-5/
-
-        public ActionResult Index(string option, string search)
+        //GET: Locations
+        public async Task<IActionResult> Index()
         {
-            if (option == "Id")
-            {
-                return View(_context.Locations.Where(x => search != null && (x.LocationId == int.Parse(search) || search == null))
-                    .ToList());
-            }
-            return View(_context.Locations.Where(x => x.Name.StartsWith(search) || search == null).ToList());
+            return View(await _context.Locations.ToListAsync());
         }
 
         // GET: Locations/Details/5
@@ -88,27 +76,6 @@ namespace SommerExam.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(location);
-        }
-
-        public async Task<IActionResult> AddSensor(int id)
-        {
-            var location = await _context.Locations.FirstOrDefaultAsync(p => p.LocationId == id);
-            if (location == null)
-                return NotFound();
-
-            return View(new Sensor(){LocationId = location.LocationId});
-        }
-        [HttpPost]
-        public async Task<IActionResult> AddSensor(Sensor sensor)
-        {
-            if (ModelState.IsValid) { 
-            var location = await _context.Locations.FirstOrDefaultAsync(p => p.LocationId == sensor.LocationId);
-            if (location != null)
-                _context.Sensors.Add(sensor);
-            await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return View(sensor);
         }
 
 
