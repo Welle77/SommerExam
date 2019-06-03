@@ -1,0 +1,46 @@
+﻿@model Sensor
+
+@{
+    ViewBag.Title = "title";
+}
+
+<h1>Add sensor</h1>
+
+<h4>Sensor</h4>
+<hr/>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddSensor">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="LocationId" class="control-label"></label>
+                <input asp-for="LocationId" class="form-control" />
+                <span asp-validation-for="LocationId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TreeSpecies" class="control-label"></label>
+                <input asp-for="TreeSpecies" class="form-control" />
+                <span asp-validation-for="TreeSpecies" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SensorId" class="control-label"></label>
+                <input asp-for="SensorId" class="form-control" />
+                <span asp-validation-for="SensorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Longitude" class="control-label"></label>
+                <input asp-for="Longitude" class="form-control" />
+                <span asp-validation-for="Longitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Latitude" class="control-label"></label>
+                <input asp-for="Latitude" class="form-control" />
+                <span asp-validation-for="Latitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

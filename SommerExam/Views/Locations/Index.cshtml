@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Location>
+
+@{
+    ViewData["Title"] = "Locations";
+}
+
+<script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<hr />
+<table class="table table-light table-hover">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.LocationId)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.AddressNumber)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.PostalCode)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="col">
+                    @Html.DisplayFor(modelItem => item.LocationId)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td
+                    >
+                    @Html.DisplayFor(modelItem => item.AddressNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostalCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.LocationId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.LocationId">Delete</a> |
+                    <a asp-action="AddSensor" asp-controller="Locations"
+                       asp-route-id="@item.LocationId">Add Sensor</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div id="Vue" class="col-md-4">
+    <br />
+    <br />
+    <input id="searchString" type="search" placeholder="Type in a location name" />
+    <input type="submit" value="Search" class="btn btn-primary" v-on:click="getData" />
+    <br />
+    <br />
+    <h3>Searched locations</h3>
+
+    <table class="table table-light table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LocationId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddressNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+        </tr>
+
+        <tr v-for="location in locations">
+            <td>{{location.locationId}}</td>
+            <td>{{location.name}}</td>
+            <td>{{location.address}}</td>
+            <td>{{location.addressNumber}}</td>
+            <td>{{location.postalcode}}</td>
+            <td>{{location.city}}</td>
+        </tr>
+    </table>
+</div>
+
+@section Scripts {
+    <script src="~/js/Vue.js" asp-append-version="false"></script>
+}

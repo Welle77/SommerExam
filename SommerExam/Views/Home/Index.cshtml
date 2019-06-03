@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="text-center">
+    @if (!User.Identity.IsAuthenticated) {
+        <h2 class="display-4">Welcome, please log in to proceed!</h2>
+    }
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h2 class="display-4"> Welcome Back!</h2>
+    }
+    <img src="images/trees.png" alt="" class="embed-responsive"/>
+</div>
